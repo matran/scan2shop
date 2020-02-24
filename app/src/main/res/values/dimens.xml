@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="desc_padding">40.0dip</dimen>
+    <dimen name="dots_height">30.0dip</dimen>
+    <dimen name="dots_margin_bottom">20.0dip</dimen>
+    <dimen name="image_width_height">150.0dip</dimen>
+    <dimen name="profile_height">75.0dip</dimen>
+    <dimen name="profile_width">75.0dip</dimen>
+    <dimen name="slide_desc">16.0dip</dimen>
+    <dimen name="slide_title">25.0dip</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+</resources>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.appcompat.widget.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+    </androidx.appcompat.widget.SearchView>
+    <ProgressBar
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:id="@+id/progressProducts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateDrawable="@drawable/progress_property" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:scrollbarSize="40.0dip"
+        android:id="@+id/goods_recycler_view"
+        android:scrollbars="vertical"
+        android:clipToPadding="false"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+    <RelativeLayout
+        android:id="@+id/errorInternet"
+        android:visibility="invisible"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/internet_textview"
+        android:text="Can't connect to the internet"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/productRetryButton"
+        android:text="Retry"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/scan_bg"
+        android:layout_below="@id/internet_textview"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </RelativeLayout>
+</RelativeLayout>

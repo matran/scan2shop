@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/AppTheme"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/topBar"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:layout_width="match_parent"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:layout_scrollFlags="enterAlways|scroll" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+    <RelativeLayout
+        android:layout_below="@id/topBar"
+        android:id="@+id/wrap_add"
+        android:background="@android:drawable/dialog_holo_light_frame"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1.0">
+        <EditText android:id="@+id/addItemEdit"
+            android:background="@null"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="10.0dip"
+            android:paddingTop="10.0dip"
+            android:paddingBottom="10.0dip"
+            android:layout_width="300.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginRight="7.0dip"
+            android:hint="@string/additem"
+            android:maxLines="1"
+            android:inputType="text" />
+
+        <ImageView
+            android:id="@+id/voiceInput"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="13dp"
+            android:layout_marginRight="13dp"
+            android:background="@mipmap/ic_keyboard_voice"
+            android:paddingTop="10dp"
+            android:scaleType="fitXY" />
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/myListPView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wrap_add" />
+    <LinearLayout
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:id="@+id/mylistBottomBar"
+        android:background="@color/listView"
+        android:paddingTop="6.0dip"
+        android:paddingRight="10.0dip"
+        android:paddingBottom="6.0dip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/listCart"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:textSize="17.0sp"
+            android:textStyle="bold"
+            android:text="Total:"
+            android:paddingLeft="10.0dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:lines="1" />
+        <TextView
+            android:textSize="17.0sp"
+            android:textStyle="bold"
+            android:id="@+id/mylisttotalTextView"
+            android:padding="6.0dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+             />
+        <TextView
+            android:layout_marginLeft="40dp"
+            android:text="Items in list:"
+            android:textSize="17.0sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/mylistQun"
+            android:textSize="17.0sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <View
+        android:background="@color/colorTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="1.0dip"
+        android:layout_above="@+id/mylistBottomBar"
+        android:alpha="0.5" />
+</RelativeLayout>

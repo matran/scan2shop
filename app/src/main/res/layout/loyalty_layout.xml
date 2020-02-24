@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+   <RelativeLayout
+       android:layout_centerInParent="true"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/loyaltyCard"
+        android:src="@mipmap/loyalty"
+        android:layout_centerHorizontal="true"
+        android:layout_width="400px"
+        android:layout_height="400px"/>
+    <TextView
+        android:text="CURRENT POINTS"
+        android:id="@+id/points"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/loyaltyCard"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:text="345"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:typeface="normal"
+        android:layout_below="@id/points"
+        android:layout_centerInParent="true"
+        android:id="@+id/layaltyPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_marginTop="10dp"
+        android:text="REDEEEM"
+        android:textColor="@color/textColorPrimary"
+        android:background="@drawable/layout_bg"
+        android:layout_below="@id/layaltyPoints"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+   </RelativeLayout>
+</RelativeLayout>

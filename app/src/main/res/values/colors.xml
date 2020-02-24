@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="addtocart">#ff063d4b</color>
+    <color name="cartBackgroundCart">#2c9e9a9a</color>
+    <color name="checkbutton">#01df30</color>
+    <color name="colorAccent">#ff092b74</color>
+    <color name="colorBackground">#fff5f5f5</color>
+    <color name="colorPrimary">#eda034</color>
+    <color name="colorPrimaryDark">#a76f20</color>
+    <color name="colorTitle">#ff424242</color>
+    <color name="creditButton">#ff123e80</color>
+    <color name="drawercolor">#ffffffff</color>
+    <color name="listTextcolor">#ff000000</color>
+    <color name="listView">#ffdfdfdf</color>
+    <color name="scan_b">#01df30</color>
+    <color name="navHeader">#01df30</color>
+    <color name="overlaycolor">#1b000000</color>
+    <color name="screenColor">#01df30</color>
+    <color name="tabTextHighlight">#f6000000</color>
+    <color name="tabTextcolor">#4e000000</color>
+    <color name="textColorPrimary">#ffffffff</color>
+    <color name="addtomylist">#897814</color>
+</resources>

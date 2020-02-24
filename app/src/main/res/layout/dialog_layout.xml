@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:theme="@style/Animation.AppCompat.Dialog"
+    android:padding="7dp"
+ >
+
+    <TextView
+        android:id="@+id/textQuantity"
+        android:layout_width="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/noOfItems"
+        android:layout_alignBottom="@+id/noOfItems"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/quantit" />
+    <EditText
+        android:layout_toRightOf="@id/textQuantity"
+        android:layout_toEndOf="@id/textQuantity"
+        android:id="@+id/noOfItems"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/noofitem"
+        android:inputType="number" />
+</RelativeLayout>

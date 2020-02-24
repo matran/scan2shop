@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "203761287720",
+    "firebase_url": "https://scan2shop-4c97a.firebaseio.com",
+    "project_id": "scan2shop-4c97a",
+    "storage_bucket": "scan2shop-4c97a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:203761287720:android:e58871f97fcf3b20232b1d",
+        "android_client_info": {
+          "package_name": "com.alienware.scan2shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "203761287720-pc3ukrf1ghna6ihvahgr156l86j2uud2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAw-ihIb1zummyGvHpNR_cXkGJA8vpJ_Yw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "203761287720-pc3ukrf1ghna6ihvahgr156l86j2uud2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

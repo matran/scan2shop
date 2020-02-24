@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/topAcBar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarAc"
+            android:background="?colorPrimary"
+            android:layout_width="fill_parent"
+            android:layout_height="?actionBarSize"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:layout_scrollFlags="enterAlways|scroll" />
+    </com.google.android.material.appbar.AppBarLayout>
+    <LinearLayout
+        android:layout_below="@id/topAcBar"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingLeft="20.0dip"
+            android:paddingRight="20.0dip"
+            android:paddingBottom="10.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10.0dip">
+            <TextView android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/personalinfo"
+                android:layout_alignParentLeft="true"
+                 />
+            <Button
+                android:id="@+id/saveButton"
+                android:background="@drawable/bg_save_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
+        <View
+            android:background="@android:color/background_dark"
+            android:layout_width="fill_parent"
+            android:layout_height="1.0dip"
+            android:alpha="0.5" />
+        <ScrollView
+            android:scrollbarSize="40.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0">
+            <LinearLayout
+                android:orientation="vertical"
+                android:focusableInTouchMode="true"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20.0dip"
+                android:layout_marginRight="20.0dip">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:paddingBottom="20.0dip"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:layout_width="70.0dip"
+                        android:layout_height="fill_parent"
+                        android:text="@string/first_name" />
+                    <EditText
+                        android:textColor="@android:color/black"
+                        android:id="@+id/acFirstName"
+                        android:background="@drawable/edit_text_bg_selector"
+                        android:padding="6.0dip"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40.0dip"
+                        android:layout_marginTop="5.0dip" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:paddingBottom="20.0dip"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:layout_width="70.0dip"
+                        android:layout_height="fill_parent"
+                        android:text="@string/last_name" />
+                    <EditText
+                        android:textColor="@android:color/black"
+                        android:id="@+id/aclastName"
+                        android:background="@drawable/edit_text_bg_selector"
+                        android:padding="6.0dip"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40.0dip"
+                        android:layout_marginTop="5.0dip" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:paddingBottom="20.0dip"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:layout_width="70.0dip"
+                        android:layout_height="fill_parent"
+                        android:text="@string/aEmail" />
+                    <EditText
+                        android:textColor="@android:color/black"
+                        android:id="@+id/acEmail"
+                        android:background="@drawable/edit_text_bg_selector"
+                        android:padding="6.0dip"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40.0dip"
+                        android:layout_marginTop="5.0dip" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:paddingBottom="20.0dip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:layout_width="70.0dip"
+                        android:layout_height="fill_parent"
+                        android:text="@string/Phone" />
+                    <EditText
+                        android:textColor="@android:color/black"
+                        android:id="@+id/accountPhone"
+                        android:background="@drawable/edit_text_bg_selector"
+                        android:padding="6.0dip"
+                        android:maxLength="12"
+                        android:inputType="phone"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40.0dip"
+                        android:layout_marginTop="5.0dip" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+    <include
+        android:visibility="invisible"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/accountProgressBar"
+        layout="@layout/progress_layout"/>
+</RelativeLayout>

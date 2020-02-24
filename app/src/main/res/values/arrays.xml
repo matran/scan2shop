@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="array_dot_active">
+        <item>@color/screenColor</item>
+        <item>@color/screenColor</item>
+        <item>@color/screenColor</item>
+        <item>@color/screenColor</item>
+    </array>
+    <array name="array_dot_inactive">
+        <item>@color/textColorPrimary</item>
+        <item>@color/textColorPrimary</item>
+        <item>@color/textColorPrimary</item>
+        <item>@color/textColorPrimary</item>
+    </array>
+    <string-array name="payment_items">
+        <item>M-pesa Express</item>
+        <item>Card-PayPal</item>
+    </string-array>
+
+    <string-array name="nav_items_titles">
+        <item>Scan2Shop</item>
+        <item>History</item>
+        <item>Help</item>
+        <item>FeedBack</item>
+        <item>About</item>
+    </string-array>
+</resources>

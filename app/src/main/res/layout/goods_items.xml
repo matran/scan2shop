@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.support.v7.widget.CardView
+        android:layout_gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1.0dip"
+        android:layout_marginBottom="1.0dip">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <com.android.volley.toolbox.NetworkImageView
+                    android:layout_gravity="start"
+                    android:id="@+id/itemImage"
+                    android:layout_width="100.0dip"
+                    android:layout_height="100.0dip"
+                    android:scaleType="fitCenter" >
+                </com.android.volley.toolbox.NetworkImageView>
+            </RelativeLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4.0dip"
+                android:layout_weight="1.0">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/itemName"
+                        android:paddingLeft="3.0dip"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                         />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/itemDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4.0dip"
+                    android:gravity="start"
+                    android:padding="0.0dip"
+                    />
+                <TextView android:gravity="end"
+                    android:id="@+id/itemPPrice"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4.0dip" />
+                <RatingBar
+                    android:id="@+id/goods_rating_bar"
+                    android:numStars="5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/ratingBarStyleSmall"
+                    />
+                <LinearLayout
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_mylist_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_receipt_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                <Button
+                    android:id="@+id/addToMyList"
+                    android:text="Add to My List"
+                    android:layout_width="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:background="@null"
+                    android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/moreOperation"
+                android:layout_gravity="right"
+                android:background="@mipmap/ic_more"
+                android:alpha="0.8"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="center" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/NoReceipt"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/receiptImage"
+            android:layout_centerHorizontal="true"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+        <TextView
+            android:id="@+id/receiptMessageTextView"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_below="@id/receiptImage"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/receiptContentArea"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:background="@android:drawable/dialog_holo_light_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/barcodeImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/barcodeImageText"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:id="@+id/titles"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+            android:text="@string/name"
+            android:textColor="@android:color/black"
+            android:id="@+id/w"
+            android:paddingLeft="7dp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/e"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="110dp"
+            android:text="Qty"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+        <TextView
+            android:textColor="@android:color/black"
+            android:layout_gravity="end"
+            android:text="@string/price"
+            android:paddingRight="7dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:padding="7dp"
+        android:id="@+id/receiptRecycle"
+        android:layout_below="@id/titles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </androidx.recyclerview.widget.RecyclerView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="7dp"
+        android:layout_alignParentLeft="true"
+        android:text="@string/total"
+        android:paddingLeft="7dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/amount"
+        android:layout_marginTop="20dp"
+        android:paddingRight="7dp"
+        android:textStyle="bold"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="7dp"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </LinearLayout>
+    <include
+        android:id="@+id/rrProgressBar"
+        android:visibility="gone"
+        layout="@layout/progress_layout"/>
+</RelativeLayout>
