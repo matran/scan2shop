@@ -16,7 +16,7 @@
     <string name="additem">Add item</string>
     <string name="addtocart">ADD TO CART</string>
     <string name="cartitems">No items in the cart.</string>
-    <string name="cashless">Cashless Payment Options</string>
+    <string name="cashless">Cashless Payment Option</string>
     <string name="cashlesstext">Pay with Mpesa or CreditCard</string>
     <string name="checkout">Checkout</string>
     <string name="clearcart">Clear Cart</string>
@@ -78,5 +78,8 @@
     <string name="proceed_payment">PROCEED PAYMENT</string>
     <string name="connection_error">Connection error has occurred try again.</string>
     <string name="no_item_found">No Item Found</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email_address">Email Address</string>
+    <string name="set_profile_photo">Set Profile Photo</string>
 
 </resources>

@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +25,7 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.alienware.scan2shop.helpers.SessionManager;
 import org.json.JSONException;
@@ -43,18 +44,17 @@ public class RegisterActivity extends AppCompatActivity {
     private ImageView errorImage;
     private TextView errorTextView;
     private AlphaAnimation inAnimation;
-    private EditText inputEmail;
-    private EditText inputFullName;
-    private EditText lastnameEdit;
+    private TextInputEditText inputEmail;
+    private TextInputEditText inputFullName;
+    private TextInputEditText lastnameEdit;
     private TextInputLayout lastnameInput;
     private TextInputLayout inputLEmail;
     private TextInputLayout inputLName;
     private TextInputLayout inputLPassword;
-    private TextInputLayout inputLPhone;
     private TextInputLayout inputLRepeatPassword;
-    private EditText inputPassword;
-    private EditText inputPhone;
-    private EditText inputRepeatPassword;
+    private TextInputEditText inputPassword;
+    private TextInputEditText inputRepeatPassword;
+    private LinearLayout inputWrap;
     private String firstname;
     private String lastname;
     private String Password;
@@ -64,10 +64,11 @@ public class RegisterActivity extends AppCompatActivity {
     private Button retryButton;
     private SessionManager session;
     private TextView textView;
-    public void onCreate(Bundle paramBundle){
-        super.onCreate(paramBundle);
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.register_layout);
         Utils.setUpToolbar(this);
+        inputWrap=findViewById(R.id.inputsWrap);
         ProgressOverlay = findViewById(R.id.progress_overlay);
         errorTextView = findViewById(R.id.errorTextView);
         progressBar = findViewById(R.id.progressBar);
@@ -76,18 +77,15 @@ public class RegisterActivity extends AppCompatActivity {
         inputRepeatPassword=findViewById(R.id.etRepeatPassword);
         lastnameInput= findViewById(R.id.tilUsernameSecond);
         lastnameEdit= findViewById(R.id.usernameSecond);
-        inputLPhone = findViewById(R.id.PhoneNumber);
         inputLEmail = findViewById(R.id.tilEmailAddress);
         inputLPassword = findViewById(R.id.tilPassword);
         inputFullName = findViewById(R.id.username);
         inputEmail = findViewById(R.id.etEmailAddress);
         retryButton = findViewById(R.id.retryButton);
-        inputPhone = findViewById(R.id.etPhoneNumber);
         inputPassword = findViewById(R.id.etPassword);
         btnRegister = findViewById(R.id.register);
         lastnameEdit.addTextChangedListener(new MyTextWatcher(lastnameEdit));
         inputFullName.addTextChangedListener(new MyTextWatcher(inputFullName));
-        inputPhone.addTextChangedListener(new MyTextWatcher(inputPhone));
         inputEmail.addTextChangedListener(new MyTextWatcher(inputEmail));
         inputPassword.addTextChangedListener(new MyTextWatcher(inputPassword));
         inputRepeatPassword.addTextChangedListener(new MyTextWatcher(inputRepeatPassword));
@@ -105,7 +103,6 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 firstname=inputFullName.getText().toString().trim();
                 lastname=lastnameEdit.getText().toString().trim();
-                phone=inputPhone.getText().toString().trim();
                 email =inputEmail.getText().toString().trim();
                 Password=inputPassword.getText().toString().trim();
                 if ((!firstname.isEmpty()) &&(!lastname.isEmpty()) && (!email.isEmpty()) && (!Password.isEmpty()) && !errorFlag) {
@@ -119,17 +116,24 @@ public class RegisterActivity extends AppCompatActivity {
             {
                 firstname=inputFullName.getText().toString().trim();
                 lastname=lastnameEdit.getText().toString().trim();
-                phone=inputPhone.getText().toString().trim();
                 email =inputEmail.getText().toString().trim();
                 Password=inputPassword.getText().toString().trim();
                 if ((!firstname.isEmpty()) &&(!lastname.isEmpty()) && (!email.isEmpty()) && (!Password.isEmpty()) && !errorFlag) {
                     registerUser(firstname,lastname,phone,email,Password);
-
                 }
             }
         });
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if (extras == null) {
+                phone=null;
+            } else {
+                phone=extras.getString("phone");
+            }
+        } else {
+            phone= (String) savedInstanceState.getSerializable("phone");
+        }
     }
-
     private class MyTextWatcher implements TextWatcher
     {
         private View view;
@@ -150,9 +154,6 @@ public class RegisterActivity extends AppCompatActivity {
                 case R.id.usernameSecond:
                     validateNameLast();
                     return;
-                case R.id.etPhoneNumber:
-                    validatePhone();
-                    return;
                 case R.id.etEmailAddress:
                     validateEmail();
                     return;
@@ -161,6 +162,7 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 case R.id.etRepeatPassword:
                     validateRepeatPassword();
+                    return;
                 default:
             }
 
@@ -187,11 +189,14 @@ public class RegisterActivity extends AppCompatActivity {
         inAnimation.setDuration(200L);
         ProgressOverlay.setAnimation(this.inAnimation);
         ProgressOverlay.setVisibility(View.VISIBLE);
+        inputWrap.setFocusable(false);
+        inputWrap.setFocusableInTouchMode(false);
+        ProgressOverlay.requestFocus();
         final String URL = Config.URL_REGISTER;
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("firstname", firstname);
         params.put("lastname", lastname);
-        params.put("phone", phone);
+        params.put("phone", "254"+phone);
         params.put("email", email);
         params.put("password", password);
         params.put("privilege","user");
@@ -203,10 +208,9 @@ public class RegisterActivity extends AppCompatActivity {
                 {
                     String status = response.getString("status");
                     if (status.equals("success")){
-                        Toast.makeText(getApplicationContext(),"Registered successfully",Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                        finish();
+                       Intent intent=new Intent(RegisterActivity.this,DoneRegisterActivity.class);
+                       startActivity(intent);
+                       finishAffinity();
                     }else if(status.equals("fail")){
                         progressBar.setVisibility(View.GONE);
                         retryButton.setVisibility(View.VISIBLE);
@@ -238,6 +242,13 @@ public class RegisterActivity extends AppCompatActivity {
         new DefaultRetryPolicy(0, 1, 1.0F);
         Scan2ShopApplication.getInstance().addToRequestQueue(str, "req_register");
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Scan2ShopApplication.getInstance().cancelPendingRequests("req_register");
+    }
+
     private void requestFocus(View paramView)
     {
         if (paramView.requestFocus()) {
@@ -245,32 +256,32 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    private boolean validateEmail(){
+    private void validateEmail(){
         String str = this.inputEmail.getText().toString().trim();
         if ((str.isEmpty()) || (!isValidEmail(str)))
         {
             errorFlag = true;
             inputLEmail.setError("invalid email address");
             requestFocus(inputEmail);
-            return false;
+
         }
             errorFlag = false;
             inputLEmail.setErrorEnabled(false);
-            return true;
+
     }
     private boolean validateNameFirst()
     {
         firstname = this.inputFullName.getText().toString().trim();
         if (firstname.isEmpty())
         {
-            this.inputLName.setError("Empty field username");
+            errorFlag=true;
+            this.inputLName.setError("Empty field first name");
             requestFocus(inputFullName);
             return false;
         }
             errorFlag = false;
             inputLName.setErrorEnabled(false);
             return true;
-
     }
 
     private boolean validateNameLast()
@@ -279,7 +290,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (lastname.isEmpty())
         {
             errorFlag = true;
-            lastnameInput.setError("Empty field lastname");
+            lastnameInput.setError("Empty field last name");
             requestFocus(lastnameEdit);
             return false;
         }
@@ -291,10 +302,9 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean validatePassword()
     {
         this.Password = this.inputPassword.getText().toString().trim();
-        if (this.Password.isEmpty())
-        {
+        if (this.Password.isEmpty()){
             errorFlag = true;
-            this.inputLPassword.setError("empty field please enter password");
+            this.inputLPassword.setError("Empty field please enter password");
             requestFocus(this.inputPassword);
             return false;
         }
@@ -310,27 +320,6 @@ public class RegisterActivity extends AppCompatActivity {
             return true;
     }
 
-    private boolean validatePhone()
-    {
-        phone = this.inputPhone.getText().toString().trim();
-        if(phone.length()>12||phone.length()<12){
-            errorFlag = true;
-            inputLPhone.setError("Invalid phone number");
-            requestFocus(inputPhone);
-            return false;
-        }
-        if (!phone.startsWith("254"))
-        {
-            errorFlag = true;
-            inputLPhone.setError("Invalid phone number. Must start with 254");
-            requestFocus(inputPhone);
-            return false;
-        }
-            errorFlag = false;
-            inputLPhone.setErrorEnabled(false);
-            return true;
-
-    }
     private boolean validateRepeatPassword(){
         Password = inputPassword.getText().toString().trim();
         repeatPassword=inputRepeatPassword.getText().toString().trim();
@@ -343,14 +332,14 @@ public class RegisterActivity extends AppCompatActivity {
         }else {
             errorFlag = false;
             inputLRepeatPassword.setErrorEnabled(false);
-            return true;
+            return false;
         }
 
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        RegisterActivity.this.finish();
+        Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+        startActivity(intent);
     }
 }

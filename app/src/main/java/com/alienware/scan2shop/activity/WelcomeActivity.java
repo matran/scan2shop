@@ -11,17 +11,14 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.alienware.scan2shop.R;
 import com.alienware.scan2shop.helpers.StartUpManager;
-
 /**
  * Created by henry cheruiyot on 2/4/2018.
  */
-
 public class WelcomeActivity extends AppCompatActivity {
     private Button btnext;
     private Button btskip;
@@ -50,8 +47,7 @@ public class WelcomeActivity extends AppCompatActivity {
         }
     };
 
-    private void addBottomDots(int paramInt)
-    {
+    private void addBottomDots(int paramInt){
         this.dots = new TextView[this.layouts.length];
         int[] arrayOfInt1 = getResources().getIntArray(R.array.array_dot_active);
         int[] arrayOfInt2 = getResources().getIntArray(R.array.array_dot_inactive);
@@ -71,8 +67,7 @@ public class WelcomeActivity extends AppCompatActivity {
         }
     }
 
-    private void changeStatusBarColor()
-    {
+    private void changeStatusBarColor(){
         if (Build.VERSION.SDK_INT >= 21)
         {
             Window localWindow = getWindow();
@@ -86,14 +81,12 @@ public class WelcomeActivity extends AppCompatActivity {
         return viewPager.getCurrentItem() + paramInt;
     }
 
-    private void launchHomeScreen()
-    {
+    private void launchHomeScreen(){
         startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
 
-    protected void onCreate(Bundle paramBundle)
-    {
+    protected void onCreate(Bundle paramBundle){
         super.onCreate(paramBundle);
         prefManager = new StartUpManager(this);
         if (!prefManager.isFirstTimeLaunch())
@@ -109,7 +102,7 @@ public class WelcomeActivity extends AppCompatActivity {
         this.dotsLayout = findViewById(R.id.layoutDots);
         this.btskip = findViewById(R.id.btn_skip);
         this.btnext = findViewById(R.id.btn_next);
-        this.layouts = new int[] { R.layout.screen1_layout, R.layout.screen2_layout, R.layout.screen3_layout, R.layout.screen4_layout };
+        this.layouts = new int[] { R.layout.screen1_layout, R.layout.screen2_layout, R.layout.screen3_layout};
         addBottomDots(0);
         changeStatusBarColor();
         myViewPagerAdapter = new MyViewPagerAdapter();
@@ -142,11 +135,9 @@ public class WelcomeActivity extends AppCompatActivity {
 
         public MyViewPagerAdapter() {}
 
-        public void destroyItem(ViewGroup paramViewGroup, int paramInt, Object paramObject)
-        {
+        public void destroyItem(ViewGroup paramViewGroup, int paramInt, Object paramObject){
             paramViewGroup.removeView((View)paramObject);
         }
-
         public int getCount() {
             return layouts.length;
         }

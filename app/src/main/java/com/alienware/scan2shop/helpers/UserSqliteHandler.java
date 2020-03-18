@@ -25,9 +25,9 @@ public class UserSqliteHandler extends SQLiteOpenHelper {
     private static final String TAG = "userdb";
     public UserSqliteHandler(Context paramContext)
     {
-        super(paramContext, "android_api", null, 18);
+        super(paramContext, "android_api", null, 19);
     }
-    public void addUser(String id,String apikey, String firstname, String secondname, String phone, String email)
+    public void addUser(String id,String apikey, String firstname, String secondname, String phone, String email,String photo)
     {
         SQLiteDatabase localSQLiteDatabase = getWritableDatabase();
         ContentValues localContentValues = new ContentValues();
@@ -37,6 +37,7 @@ public class UserSqliteHandler extends SQLiteOpenHelper {
         localContentValues.put("secondname",secondname);
         localContentValues.put("phone", phone);
         localContentValues.put("email", email);
+        localContentValues.put("photo",photo);
        localSQLiteDatabase.insert("user", null, localContentValues);
         localSQLiteDatabase.close();
     }
@@ -69,6 +70,7 @@ public class UserSqliteHandler extends SQLiteOpenHelper {
             localHashMap.put("secondname", localCursor.getString(3));
             localHashMap.put("phone", localCursor.getString(4));
             localHashMap.put("email", localCursor.getString(5));
+            localHashMap.put("photo",localCursor.getString(6));
         }
         localCursor.close();
         localSQLiteDatabase.close();
@@ -113,7 +115,7 @@ public class UserSqliteHandler extends SQLiteOpenHelper {
     }
 
     public void onCreate(SQLiteDatabase paramSQLiteDatabase) {
-        paramSQLiteDatabase.execSQL("CREATE TABLE user(id TEXT PRIMARY KEY,apikey TEXT,firstname TEXT,secondname TEXT,phone TEXT UNIQUE,email TEXT UNIQUE)");
+        paramSQLiteDatabase.execSQL("CREATE TABLE user(id TEXT PRIMARY KEY,apikey TEXT,firstname TEXT,secondname TEXT,phone TEXT UNIQUE,email TEXT UNIQUE,photo TEXT)");
     }
 
     public void onUpgrade(SQLiteDatabase paramSQLiteDatabase, int paramInt1, int paramInt2) {
@@ -121,14 +123,24 @@ public class UserSqliteHandler extends SQLiteOpenHelper {
         onCreate(paramSQLiteDatabase);
     }
 
-    public void updateUser(String firstname, String secondname, String phone, String email) {
+    public void updateUser(String firstname, String secondname, String phone, String email,String photo) {
         String str = getUserid();
         ContentValues contentValues = new ContentValues();
         contentValues.put("firstname", firstname);
         contentValues.put("secondname",secondname);
         contentValues.put("phone", phone);
         contentValues.put("email", email);
+        contentValues.put("photo",photo);
          String query = "id=" + str;
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        sqLiteDatabase.update("user", contentValues, query, null);
+        sqLiteDatabase.close();
+    }
+    public void updateImage(String photo){
+        String str = getUserid();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("photo",photo);
+        String query = "id=" + str;
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         sqLiteDatabase.update("user", contentValues, query, null);
         sqLiteDatabase.close();

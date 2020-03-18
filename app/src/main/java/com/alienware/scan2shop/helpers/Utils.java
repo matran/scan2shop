@@ -10,6 +10,7 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * Created by henry cheruiyot on 2/3/2018.
@@ -20,7 +21,7 @@ public class Utils {
     public static void setUpToolbar(AppCompatActivity paramAppCompatActivity)
     {
         paramAppCompatActivity.setSupportActionBar((Toolbar)paramAppCompatActivity.findViewById(R.id.toolbar));
-        paramAppCompatActivity.getSupportActionBar().setHomeButtonEnabled(true);
+        Objects.requireNonNull(paramAppCompatActivity.getSupportActionBar()).setHomeButtonEnabled(true);
         paramAppCompatActivity.getSupportActionBar().setDisplayShowHomeEnabled(true);
         paramAppCompatActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         paramAppCompatActivity.getSupportActionBar().setDisplayShowTitleEnabled(false);

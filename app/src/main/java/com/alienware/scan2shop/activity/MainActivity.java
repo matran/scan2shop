@@ -44,6 +44,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -161,6 +162,9 @@ public class MainActivity extends AppCompatActivity {
         HashMap<String, String> user=db.getUserDetails();
         fullNameTextView.setText(user.get("firstname")+" "+ user.get("secondname"));
         emailAdressTextView.setText(user.get("email"));
+        String photo=user.get("photo");
+        Glide.with(this).load(photo)
+                .into(profileImage);
     }
     public void loadDefaultFragment(){
         fragment=new CartFragment();
@@ -178,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_profile:
                         ItemIndex = 1;
-                        startActivity(new Intent(MainActivity.this, AccountActivity.class));
+                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                         drawer.closeDrawers();
                         break;
                     case R.id.nav_history:
@@ -244,6 +248,21 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(paramMenuItem);
     }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt("SelectedItemId", bottomNavigation.getSelectedItemId());
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        int selectedItemId = savedInstanceState.getInt("SelectedItemId");
+        bottomNavigation.setSelectedItemId(selectedItemId);
+    }
+
     private void logoutUser() {
         session.setLogin(false);
         db.deleteUsers();
@@ -309,8 +328,6 @@ public class MainActivity extends AppCompatActivity {
         local7.setRetryPolicy(new DefaultRetryPolicy(0, 1, 1.0F));
         Scan2ShopApplication.getInstance().addToRequestQueue(local7, "req_product");
     }
-
-
     private void showDialog() {
         if (!this.dialog.isShowing()) {
             this.dialog.show();
@@ -430,5 +447,9 @@ public class MainActivity extends AppCompatActivity {
         // sending gcm token to server
         Log.e(TAG, "sendRegistrationToServer: " + token);
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
 }

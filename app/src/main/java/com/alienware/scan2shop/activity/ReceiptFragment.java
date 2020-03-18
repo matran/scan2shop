@@ -1,9 +1,6 @@
 package com.alienware.scan2shop.activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -22,6 +19,7 @@ import com.alienware.scan2shop.application.Scan2ShopApplication;
 import com.alienware.scan2shop.config.Config;
 import com.alienware.scan2shop.data.Receipt;
 import com.alienware.scan2shop.helpers.ReceiptManager;
+import com.alienware.scan2shop.helpers.UserSqliteHandler;
 import com.alienware.scan2shop.helpers.Utils;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -68,29 +66,23 @@ public class ReceiptFragment extends Fragment {
             progressText.setText("Loading...");
             receiptManager=new ReceiptManager(getContext());
             receiptList=new ArrayList<>();
-            if(!receiptManager.getCurrentReceipt().equals("")){
-                fetchReceipt(receiptManager.getCurrentReceipt());
-              }else{
-                fetchReceipt(receiptManager.getReceiptNo());
-              }
+            fetchReceipt();
         return view;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
-
     @Override
     public void onResume() {
         super.onResume();
 
     }
-
-    private void fetchReceipt(final String receipt_id){
+    private void fetchReceipt(){
+        UserSqliteHandler userSqliteHandler=new UserSqliteHandler(getContext());
+        String phoneno=userSqliteHandler.getPhoneNo();
         rProgressView.setVisibility(View.VISIBLE);
-        String url=Config.URL_RECEIPT+receipt_id;
+        String url=Config.URL_RESENT+phoneno;
         StringRequest jsonObjReq = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -156,7 +148,6 @@ public class ReceiptFragment extends Fragment {
     public void onPause() {
         super.onPause();
         Scan2ShopApplication.getInstance().cancelPendingRequests("receiptrequest");
-
     }
 
     @Override

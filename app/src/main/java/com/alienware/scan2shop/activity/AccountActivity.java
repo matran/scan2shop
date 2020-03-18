@@ -1,5 +1,4 @@
 package com.alienware.scan2shop.activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,9 +22,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Objects;
 /**
- * Created by  henry cheruiyot on 2/4/2018.
+ * Created by  Henry cheruiyot on 2/4/2018.
  */
-
 public class AccountActivity extends AppCompatActivity {
     private static String TAG = "account";
     private String afterTextEmail;
@@ -146,7 +144,6 @@ public class AccountActivity extends AppCompatActivity {
         }
 
     }
-
     private void getTextFirstName(){
         afterTextFirstName = editFirstName.getText().toString().trim();
         if ((beforeTextFirstName.equals(afterTextFirstName)) || (afterTextFirstName.isEmpty()))
@@ -197,7 +194,7 @@ public class AccountActivity extends AppCompatActivity {
                 try{
                     String status=response.getString("status");
                     if (status.equals("success")){
-                        userDB.updateUser(firstname,lastname,phone, email);
+                        userDB.updateUser(firstname,lastname,phone, email,"null");
                         Toast.makeText(AccountActivity.this, "Details updated successfully", Toast.LENGTH_LONG).show();
                     }else{
                         Toast.makeText(AccountActivity.this, "Failed to update try again", Toast.LENGTH_LONG).show();

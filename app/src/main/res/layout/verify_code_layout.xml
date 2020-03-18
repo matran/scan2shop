@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical"
+    android:background="@color/colorBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_alignParentTop="true"
+        android:id="@+id/appbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:background="?colorPrimary"
+            android:layout_width="fill_parent"
+            android:layout_height="?actionBarSize"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:layout_scrollFlags="enterAlways|scroll" />
+    </com.google.android.material.appbar.AppBarLayout>
+    <RelativeLayout
+        android:layout_centerInParent="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:id="@+id/phoneimage"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/envelopopen"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+        <TextView
+            android:text="Verification code"
+            android:id="@+id/text1"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/phoneimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Enter Verification code sent to 254xxxxxxxxx"
+            android:id="@+id/text2"
+            android:textSize="20sp"
+            android:layout_below="@id/text1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.mukesh.OtpView
+            android:layout_below="@id/text2"
+            android:id="@+id/otp_view"
+            android:focusable="true"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:inputType="number"
+            app:itemCount="4"
+            app:lineColor="@color/colorPrimary"
+            app:viewType="rectangle"
+            />
+        <Button
+            android:textSize="18.0sp"
+            android:textColor="@android:color/white"
+            android:id="@+id/ctButton"
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/otp_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cornerRadius="20dp"
+            android:layout_centerHorizontal="true"
+            android:text="Continue"
+            android:textStyle="bold"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textAllCaps="false" />
+
+        <Button
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textSize="18.0sp"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/resendButton"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/ctButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Resend code"
+            android:textStyle="bold"
+            android:textAllCaps="false" />
+    </RelativeLayout>
+    <include
+        android:visibility="invisible"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/verifyProgressBar"
+        layout="@layout/progress_layout"/>
+</RelativeLayout>

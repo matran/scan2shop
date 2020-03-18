@@ -3,6 +3,7 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -97,6 +98,7 @@ public class SearchActivity extends AppCompatActivity {
                 try {
                     JSONObject object = new JSONObject(response);
                     JSONArray products = object.getJSONArray("products");
+
                     if(products.length()>0) {
                         for (int i = 0; i < products.length(); i++) {
                             JSONObject product = (JSONObject) products.get(i);
@@ -104,6 +106,7 @@ public class SearchActivity extends AppCompatActivity {
                             String description = product.getString("description");
                             int price = product.getInt("price");
                             String image = product.getString("image");
+                            Log.e("search",image);
                             SearchItem p = new SearchItem(name, description, price, image);
                             productsList.add(p);
                         }

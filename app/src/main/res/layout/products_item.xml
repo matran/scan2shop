@@ -4,8 +4,9 @@
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_gravity="center"
+        style="@style/Widget.MaterialComponents.CardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="1.0dip"
@@ -21,23 +22,23 @@
                 android:layout_height="wrap_content">
                 <ImageView
                     android:paddingTop="5dp"
-                    android:elevation="6dp"
+                    app:elevation="3dp"
+                    android:layout_alignParentStart="true"
                     android:paddingBottom="5dp"
                     android:paddingLeft="5dp"
-                    android:layout_gravity="start"
                     android:id="@+id/itemImage"
                     android:layout_width="100.0dip"
-                    android:layout_height="100.0dip"
-                    android:scaleType="centerCrop" >
+                    android:layout_height="100.0dip">
                 </ImageView>
                 <TextView
                     android:id="@+id/itemQuantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_item_quantity"
-                    android:elevation="4dp"
+                    app:elevation="4dp"
                     android:gravity="center"
                     android:text="3"
+                    android:layout_alignParentStart="true"
                     android:textColor="@color/textColorPrimary"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -82,5 +83,5 @@
                 android:layout_height="24dp"
                 android:scaleType="center" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

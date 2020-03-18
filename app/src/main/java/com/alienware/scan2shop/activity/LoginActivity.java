@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -29,6 +28,7 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import org.json.JSONObject;
 import java.util.HashMap;
@@ -47,11 +47,11 @@ public class LoginActivity extends AppCompatActivity {
     private LinearLayout contentLayout;
     private UserSqliteHandler db;
     private TextView errorTextView;
-    private boolean errorflag = false;
+    private boolean errorflag = true;
     private Button forgotPassword;
     private AlphaAnimation inAnimation;
-    private EditText inputEmail;
-    private EditText inputPassword;
+    private TextInputEditText inputEmail;
+    private TextInputEditText inputPassword;
     private ProgressBar progressBar;
     private Button retryButton;
     private SessionManager session;
@@ -111,17 +111,14 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-        btnLinkToRegister.setOnClickListener(new View.OnClickListener()
-        {
+        btnLinkToRegister.setOnClickListener(new View.OnClickListener(){
             public void onClick(View paramAnonymousView){
-                Intent intent= new Intent(LoginActivity.this.getApplicationContext(), RegisterActivity.class);
+                Intent intent= new Intent(LoginActivity.this.getApplicationContext(), PhoneNumberActivity.class);
                 startActivity(intent);
             }
         });
-        forgotPassword.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View paramAnonymousView)
-            {
+        forgotPassword.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View paramAnonymousView){
                 Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
                 startActivity(intent);
 
@@ -139,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
         public void afterTextChanged(Editable paramEditable)
         {
             switch (this.view.getId()) {
-                case R.id.tilPassword:
+                case R.id.etPassword:
                     validatePassword();
                     return;
                 case R.id.etEmailAddress:
@@ -153,8 +150,7 @@ public class LoginActivity extends AppCompatActivity {
         public void beforeTextChanged(CharSequence paramCharSequence, int paramInt1, int paramInt2, int paramInt3) {}
         public void onTextChanged(CharSequence paramCharSequence, int paramInt1, int paramInt2, int paramInt3) {}
     }
-    private void checkLogin(final String email, final String password)
-    {
+    private void checkLogin(final String email, final String password){
         hideSoftInput();
         inAnimation = new AlphaAnimation(0.0F, 1.0F);
         inAnimation.setDuration(200L);
@@ -180,11 +176,12 @@ public class LoginActivity extends AppCompatActivity {
                         String  secondname=object.getString("lastname");
                         String phone = object.getString("phone");
                         String email = object.getString("email");
-                        db.addUser(id,apiKey,firstname,secondname,phone,email);
+                        String photo= object.getString("photo");
+                        db.addUser(id,apiKey,firstname,secondname,phone,email,photo);
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         startupManager.setFirstTimeLaunch(false);
-                        LoginActivity.this.finish();
+                        finishAffinity();
                     }else if(status.equals("fail")) {
                         LoginActivity.this.ProgressOverlay.setVisibility(View.GONE);
                         Toast.makeText(LoginActivity.this, "invalid email or password", Toast.LENGTH_LONG).show();
@@ -212,6 +209,14 @@ public class LoginActivity extends AppCompatActivity {
         str.setRetryPolicy(new DefaultRetryPolicy(0, 1, 1.0F));
         Scan2ShopApplication.getInstance().addToRequestQueue(str, "req_login");
     }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Scan2ShopApplication.getInstance().cancelPendingRequests("req_login");
+    }
+
     private String getPrimaryEmail()
     {
         Pattern localPattern = Patterns.EMAIL_ADDRESS;
@@ -230,16 +235,16 @@ public class LoginActivity extends AppCompatActivity {
         return str;
     }
 
-    private void hideSoftInput()
-    {
-        ((InputMethodManager)getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(this.ProgressOverlay.getWindowToken(), 2);
+    private void hideSoftInput(){
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
-
-    private static boolean isValidEmail(String paramString)
-    {
+    private static boolean isValidEmail(String paramString){
         return (!TextUtils.isEmpty(paramString)) && (Patterns.EMAIL_ADDRESS.matcher(paramString).matches());
     }
-
     private void requestFocus(View paramView)
     {
         if (paramView.requestFocus()) {
@@ -261,7 +266,6 @@ public class LoginActivity extends AppCompatActivity {
         this.textEmail.setErrorEnabled(false);
         return true;
     }
-
     private boolean validatePassword(){
         this.Password = this.inputPassword.getText().toString().trim();
         if (this.Password.isEmpty())
@@ -270,17 +274,14 @@ public class LoginActivity extends AppCompatActivity {
             requestFocus(this.inputPassword);
             return false;
         }
-        if (this.Password.length() < 6)
-        {
-            this.errorflag = true;
-            this.textPassword.setError("Enter password with more than 6 characters");
-            return false;
-        }
         this.errorflag = false;
         this.textPassword.setErrorEnabled(false);
         return true;
     }
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
 }
 

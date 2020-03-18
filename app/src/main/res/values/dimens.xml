@@ -6,8 +6,8 @@
     <dimen name="image_width_height">150.0dip</dimen>
     <dimen name="profile_height">75.0dip</dimen>
     <dimen name="profile_width">75.0dip</dimen>
-    <dimen name="slide_desc">16.0dip</dimen>
-    <dimen name="slide_title">25.0dip</dimen>
+    <dimen name="slide_desc">16sp</dimen>
+    <dimen name="slide_title">25sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>

@@ -1,43 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical"
+<RelativeLayout
     android:background="@color/textColorPrimary"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <include layout="@layout/error_layout_overlay" />
     <include layout="@layout/toolbar_layout" />
-    <ScrollView android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-        <LinearLayout android:gravity="center"
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.MaterialComponents.CardView"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:gravity="center"
+            android:id="@+id/inputsWrap"
             android:orientation="vertical"
             android:paddingLeft="10.0dip"
             android:paddingRight="10.0dip"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="32.0dip">
             <com.google.android.material.textfield.TextInputLayout
-                android:theme="@style/textInputLayout"
-                android:gravity="center" android:layout_gravity="center"
+                android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:id="@+id/tilUsername"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <EditText android:textSize="16.0dip"
-                    android:textColor="@color/colorTitle"
-                    android:textColorHint="@color/colorPrimary"
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/username"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/firstname" android:inputType="textCapWords" />
+                    android:fontFamily="@font/quicksand_medium"
+                    android:hint="@string/firstname"
+                    android:inputType="textCapWords"
+                    android:textColor="@color/colorTitle"
+                    android:textColorHint="@color/colorPrimary" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
-                android:theme="@style/textInputLayout"
+                android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:id="@+id/tilUsernameSecond"
-                android:layout_width="fill_parent"
+                android:layout_marginTop="8.0dip"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <EditText android:textSize="16.0dip"
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:textSize="16.0dip"
                     android:textColor="@color/colorTitle"
                     android:textColorHint="@color/colorPrimary"
                     android:id="@+id/usernameSecond"
@@ -45,33 +59,18 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/lastname" android:inputType="textCapWords" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
-                android:theme="@style/textInputLayout"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:id="@+id/PhoneNumber"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8.0dip">
-                <EditText android:textSize="16.0dip"
-                    android:textColor="@color/colorTitle"
-                    android:textColorHint="@color/colorPrimary"
-                    android:id="@+id/etPhoneNumber"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/Phone"
-                    android:maxLength="12"
-                    android:inputType="phone" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:theme="@style/textInputLayout"
+                android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:id="@+id/tilEmailAddress"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8.0dip">
-                <EditText android:textSize="16.0dip"
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:textSize="16.0dip"
                     android:textColor="@color/colorTitle"
                     android:textColorHint="@color/colorPrimary"
                     android:id="@+id/etEmailAddress"
@@ -80,8 +79,9 @@
                     android:hint="@string/Email"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
-                android:theme="@style/textInputLayout"
+                android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:id="@+id/tilPassword"
@@ -89,7 +89,8 @@
                 android:layout_height="wrap_content"
                 app:passwordToggleEnabled="true"
                 android:layout_marginTop="8.0dip">
-                <EditText android:textSize="16.0dip"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:textSize="16.0dip"
                     android:textColor="@color/colorTitle"
                     android:textColorHint="@color/colorPrimary"
                     android:id="@+id/etPassword"
@@ -101,7 +102,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:theme="@style/textInputLayout"
+                android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:id="@+id/tilRepeatPassword"
@@ -109,7 +110,8 @@
                 android:layout_height="wrap_content"
                 app:passwordToggleEnabled="true"
                 android:layout_marginTop="8.0dip">
-                <EditText android:textSize="16.0dip"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:textSize="16.0dip"
                     android:textColor="@color/colorTitle"
                     android:textColorHint="@color/colorPrimary"
                     android:id="@+id/etRepeatPassword"
@@ -119,15 +121,19 @@
                     android:hint="@string/repeat_password"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
-            <Button android:textSize="18.0sp"
+            <Button
+                android:textSize="18.0sp"
+                style="@style/Widget.MaterialComponents.Button"
                 android:textColor="@android:color/white"
                 android:layout_gravity="center"
                 android:id="@+id/register"
-                android:background="@drawable/x_login_reg_button"
-                android:layout_width="fill_parent"
+                app:cornerRadius="20dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/create_account"
                 android:textAllCaps="false" />
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+        <include layout="@layout/error_layout_overlay" />
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

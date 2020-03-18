@@ -2,11 +2,8 @@ package com.alienware.scan2shop.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.alienware.scan2shop.R;
-
 /**
  * Created by henry cheruiyot on 2/5/2018.
  */
